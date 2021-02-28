@@ -20,8 +20,8 @@ const RocketsPage = () => {
     }
 
     return (
-        <div className="mt-2">
-            <ul className="mt-10">
+        <div className="mt-40 ml-40">
+            <ul>
                 {
                 rockets.length > 0 ? (
                     rockets.map((rocket, index) => (

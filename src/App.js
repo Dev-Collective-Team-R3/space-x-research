@@ -9,15 +9,15 @@ function App() {
   return (
     <div className="">
       <Router>
-      <div className="absolute z-10 mt-8 ">
-        <ul className="flex flex-row">
-          <li className="ml-2"><Button title="Home" link="/" /></li>
-          <li className="ml-2"><Button title="Rockets" link="/rockets"/></li>
-          <li className="ml-2"><Button title="SpaceX" link="/timeline"/></li>
-          <li className="ml-2"><Button title="Launches" link="/launches"/></li>
-          <li className="ml-2"><Button title="Capsules" link="/capsules"/></li>
-        </ul>
-      </div>
+        <div className="z-0">
+          <ul className="z-10 flex flex-row absolute top-6">
+            <li className="ml-2"><Button title="Home" link="/" /></li>
+            <li className="ml-2"><Button title="Rockets" link="/rockets"/></li>
+            <li className="ml-2"><Button title="SpaceX" link="/timeline"/></li>
+            <li className="ml-2"><Button title="Launches" link="/launches"/></li>
+            <li className="ml-2"><Button title="Capsules" link="/capsules"/></li>
+          </ul>
+        </div>
         <Switch>
             <Route exact path="/"><LandingPage /></Route>
             <Route exact path="/rockets"><RocketsPage /></Route>
