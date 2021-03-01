@@ -76,7 +76,7 @@ const Rocket = () => {
 
                     </div>
                     <div className="w-1/2 shadow-lg cursor-pointer" onClick={handleClick}>
-                        <img src={rocket.flickr_images[imageCounter]} alt="" className="object-cover h-full" />
+                        <img src={rocket.flickr_images[imageCounter]} alt="spacex rockets" className="object-cover h-screen" />
                     </div>
                 </div>) : 
                 (<div>"Loading..."</div>)
