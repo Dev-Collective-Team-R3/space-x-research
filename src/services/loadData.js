@@ -1,7 +1,9 @@
 import axios from 'axios'
 
-const fetchMultipleSchema = (schema) =>{
-
+export const fetchMultipleSchema = async (schema) =>{
+    const request_url = `https://api.spacexdata.com/v4/${schema}`
+    const response = await axios.get(request_url)
+    return response.data
 }
 
 export const fetchSingleItem = async ( schema, id ) =>{

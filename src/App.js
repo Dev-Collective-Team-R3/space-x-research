@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import LandingPage from "./components/LandingPage/LandingPage";
 import RocketsPage from "./components/RocketsPage/RocketsPage";
+import LaunchesPage from './components/LaunchesPage/LaunchesPage';
 import Rocket from './components/Rocket/Rocket';
 import Button from './components/Button/Button'
 
@@ -22,6 +23,7 @@ function App() {
             <Route exact path="/"><LandingPage /></Route>
             <Route exact path="/rockets"><RocketsPage /></Route>
             <Route exact path="/rockets/:rocketid"><Rocket /></Route>
+            <Route exact path="/launches" component={LaunchesPage} />
         </Switch>
       </Router>
     </div>
