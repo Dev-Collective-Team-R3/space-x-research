@@ -13,7 +13,7 @@ const LaunchesPage = () => {
     useEffect(async ()=>{
         const data = await fetchMultipleSchema('launches')
         setLaunches(data)
-    },[])
+    },[fetchMultipleSchema])
     
     const handleClick = (e) =>{
         const focusId = e.target.id

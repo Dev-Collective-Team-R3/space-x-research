@@ -5,6 +5,7 @@ import RocketsPage from "./components/RocketsPage/RocketsPage";
 import LaunchesPage from './components/LaunchesPage/LaunchesPage';
 import Rocket from './components/Rocket/Rocket';
 import Timeline from './components/timeline';
+import Capsules from './components/CapsulesPage'
 
 import Button from './components/Button/Button'
 
@@ -27,6 +28,7 @@ function App() {
             <Route exact path="/rockets/:rocketid"><Rocket /></Route>
             <Route exact path="/launches" component={LaunchesPage} />
             <Route exact path="/timeline" component={Timeline} />
+            <Route exact path="/capsules" component={Capsules} />
         </Switch>
       </Router>
     </div>
