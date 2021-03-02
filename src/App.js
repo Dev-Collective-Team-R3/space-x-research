@@ -5,7 +5,8 @@ import RocketsPage from "./components/RocketsPage/RocketsPage";
 import LaunchesPage from './components/LaunchesPage/LaunchesPage';
 import Rocket from './components/Rocket/Rocket';
 import Timeline from './components/timeline';
-import Capsules from './components/CapsulesPage'
+import Capsules from './components/CapsulesPage';
+import Capsule from './components/Capsule';
 
 import Button from './components/Button/Button'
 
@@ -29,6 +30,7 @@ function App() {
             <Route exact path="/launches" component={LaunchesPage} />
             <Route exact path="/timeline" component={Timeline} />
             <Route exact path="/capsules" component={Capsules} />
+            <Route exact path="/capsules/:capsuleid"><Capsule /></Route>
         </Switch>
       </Router>
     </div>
