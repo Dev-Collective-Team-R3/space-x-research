@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 import { fetchSingleItem } from '../../services/loadData';
+import Loading from '../Loading'
 
 const LaunchCard = () => {
     const { launchid } = useParams()
@@ -32,7 +33,7 @@ const LaunchCard = () => {
                         <p>{launch.details}</p>
                     </div>
                 </div>
-            ): "Loading..."}
+            ): (<Loading />)}
         </div>
     )
 }

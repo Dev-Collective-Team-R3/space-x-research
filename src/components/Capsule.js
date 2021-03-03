@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 
 import Dragon from '../assets/dragon.png'
 import { fetchSingleItem } from '../services/loadData'
+import Loading from './Loading'
 
 const Capsule = () => {
 
@@ -57,7 +58,7 @@ const Capsule = () => {
                         </tbody>
                     </table>
                 </div>
-            ): "Loading data.."
+            ): (<Loading />)
         }
         </div>
     )

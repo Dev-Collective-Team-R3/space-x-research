@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { fetchMultipleSchema } from '../services/loadData'
+import Loading from './Loading'
 
 const CapsulesPage = () => {
 
@@ -27,7 +28,7 @@ const CapsulesPage = () => {
                                     {capsule.launches.map(launch=><div key={launch}>{launch}</div>)}
                             </Link>
                         ))
-                    ): "Loading..."
+                    ): (<Loading />)
             }
         </div>
     )
