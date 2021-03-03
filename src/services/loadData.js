@@ -1,6 +1,7 @@
 import axios from 'axios'
+import { useCallback } from 'react'
 
-export const fetchMultipleSchema = async (schema) =>{
+export const fetchMultipleSchema = async (schema) => {
     const request_url = `https://api.spacexdata.com/v4/${schema}`
     const response = await axios.get(request_url)
     return response.data
