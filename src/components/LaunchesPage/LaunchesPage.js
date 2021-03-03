@@ -14,19 +14,28 @@ const LaunchesPage = () => {
 
     const [ allLaunches, setAllLaunches ] = useState([])
 
+    
     useEffect(async ()=>{
         const data = await fetchMultipleSchema('launches')
         setLaunches(data)
         setAllLaunches(data)
-    },[fetchMultipleSchema])
-
+    },[])
+    
     const [ rockets, setRockets ] = useState([])
+
     useEffect(async ()=>{
         const data = await fetchMultipleSchema('rockets')
         const mappedData = data.map(rocket => ({id: rocket.id, name: rocket.name}))
         setRockets(mappedData)
-    },[fetchMultipleSchema])
+    },[])
     
+    const [ capsules, setCapsules ] = useState([])
+
+    useEffect(async()=>{
+        const data = await fetchMultipleSchema('capsules')
+        const mappedData = data.map(capsule => ({ id: capsule.id, serial: capsule.serial, type: capsule.type }))
+        setCapsules(mappedData)
+    }, [])
 
     const searchFunction = (e) => {
         const searchResult = allLaunches.filter(launch => (
@@ -45,7 +54,7 @@ const LaunchesPage = () => {
                     (launches.length > 0) ?
                     (_.sortBy(launches, (launch)=> launch.name ).map((launch, index) => (
                         <li key={index} className="w-screen-40 p-5 border mb-5 shadow-md rounded-lg">
-                            <LaunchCard launch={launch} rockets={rockets} className=""/>
+                            <LaunchCard launch={launch} rockets={rockets} capsules={capsules} className=""/>
                         </li>
                     ))) : (<Loading />)
                 }

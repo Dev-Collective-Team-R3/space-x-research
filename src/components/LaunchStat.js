@@ -2,8 +2,10 @@ import React from 'react'
 
 const LaunchStat = ({ launches }) => {
     const totalLaunches = launches.length
+
     const successRatio = () => {
-        return Math.round((launches.filter(launch => !launch.upcoming && launch.success).length) / totalLaunches * 100);
+        const success = Math.round((launches.filter(launch => !launch.upcoming && launch.success).length) / totalLaunches * 100);
+        return isNaN(success) ? "..." : success
     }
 
     const upcomingLaunches = () => {
