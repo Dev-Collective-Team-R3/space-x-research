@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom'
 
 import Mars from '../assets/mars.png'
 
-const LaunchCard = ({ launch }) => {
+const LaunchCard = ({ launch, rockets }) => {
 
     const details_word_limit = 120;
+
+    const findRocketName = id => rockets ? (rockets.find(rocket => rocket.id == id)) : null
 
     return (
         <div>
@@ -35,7 +37,7 @@ const LaunchCard = ({ launch }) => {
                             </tr>
                             <tr>
                                 <td className="text-right w-1/2 pr-4">Rocket:</td>
-                                <td className="text-left w-1/2 pr-4 overflow-hidden">{ launch.rocket ? (<Link to={`/rockets/${launch.rocket}`}>{launch.rocket}</Link>) : "No rockets used"}</td>
+                                <td className="text-left w-1/2 pr-4 overflow-hidden">{ launch.rocket ? (<Link to={`/rockets/${launch.rocket}`}>{findRocketName(launch.rocket).name}</Link>) : "No rockets used"}</td>
                             </tr>
                             <tr>
                                 <td className="text-right w-1/2 pr-4">Capsules:</td>

@@ -20,6 +20,14 @@ const LaunchesPage = () => {
         setAllLaunches(data)
     },[fetchMultipleSchema])
 
+    const [ rockets, setRockets ] = useState([])
+    useEffect(async ()=>{
+        const data = await fetchMultipleSchema('rockets')
+        const mappedData = data.map(rocket => ({id: rocket.id, name: rocket.name}))
+        setRockets(mappedData)
+    },[fetchMultipleSchema])
+    
+
     const searchFunction = (e) => {
         const searchResult = allLaunches.filter(launch => (
             (launch.name && launch.name.toLowerCase().includes(e.target.value.toLowerCase())) || 
@@ -37,7 +45,7 @@ const LaunchesPage = () => {
                     (launches.length > 0) ?
                     (_.sortBy(launches, (launch)=> launch.name ).map((launch, index) => (
                         <li key={index} className="w-screen-40 p-5 border mb-5 shadow-md rounded-lg">
-                            <LaunchCard launch={launch} className=""/>
+                            <LaunchCard launch={launch} rockets={rockets} className=""/>
                         </li>
                     ))) : (<Loading />)
                 }
