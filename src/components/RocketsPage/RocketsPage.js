@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from "axios";
 
 import Rocket from '../Rocket/Rocket'
-import { Switch, Link, useRouteMatch, useParams, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const RocketsPage = () => {
 
