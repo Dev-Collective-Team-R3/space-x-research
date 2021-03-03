@@ -4,9 +4,16 @@ import { Link } from 'react-router-dom'
 
 import Mars from '../assets/mars.png'
 
-const LaunchCard = ({ launch }) => {
+const LaunchCard = ({ launch, rockets, capsules }) => {
 
     const details_word_limit = 120;
+
+    const findRocketName = id => rockets.find(rocket => rocket.id === id).name
+
+    const findCapsules = id => {
+        const capsule = capsules.find(capsule => capsule.id === id)
+        return `Type: ${capsule.type}, Srl: ${capsule.serial}`
+    }
 
     return (
         <div>
@@ -35,11 +42,20 @@ const LaunchCard = ({ launch }) => {
                             </tr>
                             <tr>
                                 <td className="text-right w-1/2 pr-4">Rocket:</td>
-                                <td className="text-left w-1/2 pr-4 overflow-hidden">{ launch.rocket ? (<Link to={`/rockets/${launch.rocket}`}>{launch.rocket}</Link>) : "No rockets used"}</td>
+                                <td className="text-left w-1/2 pr-4 overflow-hidden">
+                                    { (launch.rocket && rockets) ? 
+                                        (<Link to={`/rockets/${launch.rocket}`}>{ findRocketName(launch.rocket) }</Link>) 
+                                        : "No rockets used"}
+                                </td>
                             </tr>
                             <tr>
                                 <td className="text-right w-1/2 pr-4">Capsules:</td>
-                                <td className="text-left w-1/2 pr-4 overflow-hidden">{ launch.capsules.length > 0 ? (launch.capsules.map(capsule=><Link to={`/capsules/${capsule}`}>{capsule}</Link>)) : "No capsules" }</td>
+                                <td className="text-left w-1/2 pr-4 overflow-hidden">
+                                    { (capsules && launch.capsules.length > 0) ? 
+                                        (launch.capsules.map(capsule=><Link to={`/capsules/${capsule}`} key={capsule}>{findCapsules(capsule)}</Link>)) 
+                                        : "No capsules" 
+                                    }
+                                </td>
                             </tr>
                         </tbody>
                     </table>
