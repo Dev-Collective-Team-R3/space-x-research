@@ -17,9 +17,9 @@ const LaunchCard = ({ launch }) => {
                 </div>
                 <h4 className="text-2xl my-5">{launch.name}</h4>
                 <div className="mb-5 flex">
-                    <div className={`border rounded-full py-1 px-3 text-xs text-center m-1 ${ launch.success ? "border-green-400 text-green-400" : "border-red-400 text-red-400"}`}>
+                    {!launch.upcoming ? (<div className={`border rounded-full py-1 px-3 text-xs text-center m-1 ${ launch.success ? "border-green-400 text-green-400" : "border-red-400 text-red-400"}`}>
                         Launch {launch.success ? "Successful" : "Failed"}
-                    </div>
+                    </div>) : null}
                     {launch.upcoming ? (<div className="border border-blue-400 rounded-full py-1 px-3 text-xs text-blue-400 text-center m-1">Upcoming</div>) : null}
                 </div>
                 <div>
