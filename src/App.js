@@ -14,7 +14,7 @@ import LaunchCard from "./components/Launch/Launch";
 
 function App() {
   return (
-    <div className="">
+    <div className="h-screen">
       <Router>
       <div className="z-0">
         <ul className="z-10 flex flex-row absolute top-6">

@@ -2,6 +2,12 @@ module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    screens: {
+      'mobile': '100px',
+      'tablet': '600px',
+      'laptop': '1024px',
+      'desktop': '1280px',
+    },
     height: {
       'screen': '100vh',
       'screen-1/2': '50vh',
@@ -27,6 +33,12 @@ module.exports = {
       '80': '80%',
       '90': '90%',
       'full': '100%',
+    },
+    maxWidth: {
+      'screen': '100vw',
+      'screen-1/2': '50vw',
+      'screen-1/4': '25vw',
+      'screen-3/4': '75vw',
     }
   },
   variants: {
