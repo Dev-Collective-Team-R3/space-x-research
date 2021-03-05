@@ -1,37 +1,36 @@
-import React, { useState, useEffect } from 'react'
-import axios from "axios";
+import React, { useState, useEffect, useMemo } from 'react'
 
-import Rocket from '../Rocket/Rocket'
-import { Link } from 'react-router-dom';
+import { fetchMultipleSchema } from '../../services/loadData'
+import RocketsTable from '../RocketsTable'
+import Loading from '../Loading'
 
 const RocketsPage = () => {
 
+    // State to hold all the rocket data
     const [ rockets, setRockets ] = useState([])
+
+    //state to hold only rocket names and ids
+    const [ rocketSmall, setRocketSmall ] = useState([])
     
-    useEffect(() => {
-        loadRockets()
+    useEffect(async () => {
+        const data = await fetchMultipleSchema('rockets')
+        setRockets(data)
+        const newdata = data.map(rocket=>({id: rocket.id, name: rocket.name}))
+        setRocketSmall(newdata)
     }, [])
 
-    const loadRockets = () => {
-        (async () =>{
-            const response = await axios.get("https://api.spacexdata.com/v4/rockets");
-            setRockets(response.data)
-        })()
-    }
+    const tableColumns = useMemo(
+        ()=>{
+            const headers = [].push({HEADER: '', accessor: ''})
+            rockets.map(rocket=>({HEADER: rocket.name, accessor: ""}))
+        },[]
+    )
 
     return (
-        <div className="mt-40 ml-40">
-            <ul>
-                {
-                rockets.length > 0 ? (
-                    rockets.map((rocket, index) => (
-                        <li className="mt-5" key={index}>
-                            <Link to={`/rockets/${rocket.id}`}>{rocket.name}</Link>
-                        </li>
-                    ))
-                    ):'No rockets loaded'
-                }
-            </ul>
+        <div className="">
+            {
+                rockets.length > 0 ? (<RocketsTable rockets={rockets} />):(<Loading />)
+            }
         </div>
     )
 }
