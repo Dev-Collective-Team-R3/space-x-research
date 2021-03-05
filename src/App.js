@@ -14,10 +14,10 @@ import LaunchCard from "./components/Launch/Launch";
 
 function App() {
   return (
-    <div className="">
+    <div className="mt-32 mx-20">
       <Router>
-      <div className="z-0">
-        <ul className="z-10 flex flex-row absolute top-6">
+      <div >
+        <ul className="z-10 fixed flex flex-row top-6 left-3">
           <li className="ml-2"><Button title="Home" link="/" /></li>
           <li className="ml-2"><Button title="Rockets" link="/rockets"/></li>
           <li className="ml-2"><Button title="SpaceX" link="/timeline"/></li>
