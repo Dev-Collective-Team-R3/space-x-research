@@ -11,6 +11,7 @@ const RocketsTable = ({ rockets }) => {
         {parameter: 'no_of_engines', name: 'Number of Engines', accessor: 'engines.number'},
         {parameter: 'engine_type', name: 'Engine Type', accessor: 'engines.type'},
         {parameter: 'primary_engine_prop', name: 'Primary Engine Propellant', accessor: 'engines.propellant_1'},
+        {parameter: 'secondary_engine_prop', name: 'Secondary Engine Propellant', accessor: 'engines.propellant_2'},
         {parameter: 'landing_legs', name: 'Number of Landing Legs', accessor: 'landing_legs.number'},
         {parameter: 'cost_launch', name: 'Cost per Launch (USD Millions)', accessor: 'cost_per_launch'},
         {parameter: 'success_rate', name: 'Success Rate (%)', accessor: 'success_rate_pct'},
