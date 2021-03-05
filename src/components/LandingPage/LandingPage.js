@@ -4,7 +4,7 @@ import Poster from '../../assets/cover.jpg'
 
 const LandingPage = () => {
     return (
-        <div className="h-screen w-screen fixed">
+        <div className="h-screen w-screen fixed inset-0">
             <video 
                 autoPlay 
                 loop 

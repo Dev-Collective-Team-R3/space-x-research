@@ -19,15 +19,20 @@ const Rocket = () => {
         setRocket(data)
     }, [])
 
+    const table_left_col = "text-right pr-4 pl-6"
+    const table_right_col = "pl-4 pr-6"
+    const table_odd_row = "bg-pink-200"
+    const table_even_row = "bg-pink-100"
+
     return (
-        <div className="flex flex-col m-20">
-            
+        <div>
+            <Link to="/rockets" className="rounded-full px-3 py-1 text-center fixed right-20 top-3 bg-pink-400 text-white">Go Back</Link>
             { 
-                rocket ? 
-                (<div className="flex">
-                    <div className="flex-col w-1/2 mr-2">
-                        <h2 className="text-4xl">{rocket.name}</h2>
-                        <div className="flex items-baseline">
+                rocket ?
+                (<div className="flex mb-20">
+                    <div className="w-screen-1/2 mr-2">
+                        <h2 className="text-4xl text-center">{rocket.name}</h2>
+                        <div className="flex justify-center items-baseline">
                             <div 
                                 className={`border rounded-full p-1 text-xs m-3 ml-0
                                     ${rocket.active ? 'border-green-500 text-green-500' : 'border-red-500 text-red-500'}`}
@@ -37,51 +42,51 @@ const Rocket = () => {
                             <a className="border rounded-full p-1 text-xs border-black" href={rocket.wikipedia} target="_blank">Wikipedia</a>
                         </div>
                         <p className="mt-5">{rocket.description}</p>
-                        <table className="table-auto border border-black mt-5 ml-5">
+                        <table className="table-auto mt-5 mx-auto ">
                             <tbody>
-                                <tr>
-                                    <td className="border border-black p-2">Stages</td>
-                                    <td className="border border-black p-2">{rocket.stages}</td>
+                                <tr className={table_odd_row}>
+                                    <td className={table_left_col}>Stages:</td>
+                                    <td className={table_right_col}>{rocket.stages}</td>
                                 </tr>
-                                <tr>
-                                    <td className="border border-black p-2">Boosters</td>
-                                    <td className="border border-black p-2">{rocket.boosters}</td>
+                                <tr className={table_even_row}>
+                                    <td className={table_left_col}>Boosters:</td>
+                                    <td className={table_right_col}>{rocket.boosters}</td>
                                 </tr>
-                                <tr>
-                                    <td className="border border-black p-2">First Flight</td>
-                                    <td className="border border-black p-2">{rocket.first_flight}</td>
+                                <tr className={table_odd_row}>
+                                    <td className={table_left_col}>First Flight:</td>
+                                    <td className={table_right_col}>{rocket.first_flight}</td>
                                 </tr>
-                                <tr>
-                                    <td className="border border-black p-2">Height</td>
-                                    <td className="border border-black p-2">{rocket.height.meters} meters</td>
+                                <tr className={table_even_row}>
+                                    <td className={table_left_col}>Height:</td>
+                                    <td className={table_right_col}>{rocket.height.meters} meters</td>
                                 </tr>
-                                <tr>
-                                    <td className="border border-black p-2">Diameter</td>
-                                    <td className="border border-black p-2">{rocket.diameter.meters} meters</td>
+                                <tr className={table_odd_row}>
+                                    <td className={table_left_col}>Diameter:</td>
+                                    <td className={table_right_col}>{rocket.diameter.meters} meters</td>
                                 </tr>
-                                <tr>
-                                    <td className="border border-black p-2">Mass</td>
-                                    <td className="border border-black p-2">{rocket.mass.lb} lbs</td>
+                                <tr className={table_even_row}>
+                                    <td className={table_left_col}>Mass:</td>
+                                    <td className={table_right_col}>{rocket.mass.lb} lbs</td>
                                 </tr>
-                                <tr>
-                                    <td className="border border-black p-2" >Success Rate</td>
-                                    <td className="border border-black p-2" >{rocket.success_rate_pct}</td>
+                                <tr className={table_odd_row}>
+                                    <td className={table_left_col} >Success Rate:</td>
+                                    <td className={table_right_col} >{rocket.success_rate_pct}</td>
                                 </tr>
-                                <tr>
-                                    <td className="border border-black p-2" >Cost per launch</td>
-                                    <td className="border border-black p-2" >{rocket.cost_per_launch/1000000} Million</td>
+                                <tr className={table_even_row}>
+                                    <td className={table_left_col} >Cost per launch:</td>
+                                    <td className={table_right_col} >{rocket.cost_per_launch/1000000} Million</td>
                                 </tr>
                             </tbody>
                         </table>
 
                     </div>
-                    <div className="w-1/2 shadow-lg cursor-pointer" onClick={handleClick}>
+                    <div className="w-screen-1/2 shadow-lg cursor-pointer" onClick={handleClick}>
                         <img src={rocket.flickr_images[imageCounter]} alt="spacex rockets" className="object-cover h-screen" />
                     </div>
                 </div>) : 
                 (<div>"Loading..."</div>)
             }
-            <Link to="/rockets" className="border border-pink-500 rounded-full w-20 p-1 text-center mt-10">Go Back</Link>
+            
         </div>
     )
 }
