@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchSingleItem } from '../../services/loadData';
 import { FaYoutube, FaFilePdf, FaNewspaper, FaWikipediaW, FaRedditSquare } from 'react-icons/fa'
+import ImageSlides from '../ImageSlides'
 import Loading from '../Loading'
 
 const LaunchCard = () => {
@@ -21,7 +22,7 @@ const LaunchCard = () => {
     }
 
     const media_button_style = "px-3 py-1 border-pink-300 ml-2 text-pink-500 text-3xl flex items-center"
-    const info_button_style = "rounded-full px-2 py-1"
+    const info_button_style = "rounded-full px-2 py-1 px-2 mx-1"
     const inner_text = "text-sm ml-1"
 
     return (
@@ -34,6 +35,10 @@ const LaunchCard = () => {
                             <span className={ `border ${info_button_style} ${launch.upcoming ? "border-green-500 text-green-500" : "border-blue-500 text-blue-500"} ` }>
                                 {launch.upcoming ? "future" : "launched"}
                             </span>
+                            <span className={ `border ${info_button_style} ${!launch.upcoming && launch.success ? "border-green-500 text-green-500" : "border-blue-500 text-blue-500"} ` }>
+                                {!launch.upcoming && launch.success ? "Success" : "Failed"}
+                            </span>
+
                         </div>
                         <div className="flex justify-center mb-3">
                             { launch.links.webcast ? (<a href={launch.links.webcast} target="_blank" className={media_button_style}><FaYoutube /><span className={ inner_text }> YouTube</span></a>) : null}
@@ -55,7 +60,7 @@ const LaunchCard = () => {
                         </div>
                     </div>
                     <div className="mb-5 w-screen-1/2">
-                        <img src={launch.links.flickr.original[imageCounter]} alt="spacex launch" className="object-cover h-screen-3/4 w-2/3 ml-auto mr-auto"  onClick={handleImageChange} />
+                        <ImageSlides images={ launch.links.flickr.original } />
                     </div>
                 </div>
             ): (<Loading />)}

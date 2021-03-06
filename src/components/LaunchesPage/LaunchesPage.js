@@ -15,27 +15,27 @@ const LaunchesPage = () => {
     const [ allLaunches, setAllLaunches ] = useState([])
 
     
-    useEffect(async ()=>{
+    useEffect(()=>(async ()=>{
         const data = await fetchMultipleSchema('launches')
         setLaunches(data)
         setAllLaunches(data)
-    },[])
+    })(),[])
     
     const [ rockets, setRockets ] = useState([])
 
-    useEffect(async ()=>{
+    useEffect(()=>(async ()=>{
         const data = await fetchMultipleSchema('rockets')
         const mappedData = data.map(rocket => ({id: rocket.id, name: rocket.name}))
         setRockets(mappedData)
-    },[])
+    })(),[])
     
     const [ capsules, setCapsules ] = useState([])
 
-    useEffect(async()=>{
+    useEffect(()=>(async()=>{
         const data = await fetchMultipleSchema('capsules')
         const mappedData = data.map(capsule => ({ id: capsule.id, serial: capsule.serial, type: capsule.type }))
         setCapsules(mappedData)
-    }, [])
+    })(), [])
 
     const searchFunction = (e) => {
         const searchResult = allLaunches.filter(launch => (
