@@ -11,20 +11,13 @@ import Capsule from './components/Capsule';
 
 import Button from './components/Button/Button'
 import LaunchCard from "./components/Launch/Launch";
+import Navbar from './components/Navbar'
 
 function App() {
   return (
     <div className="mt-32 mx-20">
       <Router>
-      <div >
-        <ul className="z-10 fixed flex flex-row top-6 left-3">
-          <li className="ml-2"><Button title="Home" link="/" /></li>
-          <li className="ml-2"><Button title="Rockets" link="/rockets"/></li>
-          <li className="ml-2"><Button title="SpaceX" link="/timeline"/></li>
-          <li className="ml-2"><Button title="Launches" link="/launches"/></li>
-          <li className="ml-2"><Button title="Capsules" link="/capsules"/></li>
-        </ul>
-      </div>
+        <Navbar />
         <Switch>
             <Route exact path="/"><LandingPage /></Route>
             <Route exact path="/rockets"><RocketsPage /></Route>
