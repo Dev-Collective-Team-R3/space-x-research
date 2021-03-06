@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import {fetchSingleItem} from '../../services/loadData'
-import { useHistory } from "react-router-dom"
 import ImageSlide from '../ImageSlides'
+import GoBack from '../GoBack'
 
 const Rocket = () => {
     const { rocketid } = useParams()
@@ -14,9 +14,6 @@ const Rocket = () => {
         setRocket(data)
     }, [])
 
-    // accessing history object from react-router-dom
-    const history = useHistory()
-
     const table_left_col = "text-right pr-4 pl-6"
     const table_right_col = "pl-4 pr-6"
     const table_odd_row = "bg-pink-200"
@@ -24,7 +21,7 @@ const Rocket = () => {
 
     return (
         <div>
-            <div onClick={()=> history.goBack()} className="rounded-full cursor-pointer px-3 py-1 text-center fixed right-20 top-3 bg-pink-400 text-white">Go Back</div>
+            <GoBack />
             { 
                 rocket ?
                 (<div className="flex mb-20">
