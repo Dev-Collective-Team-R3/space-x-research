@@ -5,6 +5,7 @@ import { fetchSingleItem } from '../../services/loadData';
 import { FaYoutube, FaFilePdf, FaNewspaper, FaWikipediaW, FaRedditSquare } from 'react-icons/fa'
 import ImageSlides from '../ImageSlides'
 import Loading from '../Loading'
+import GoBack from '../GoBack'
 
 const LaunchCard = () => {
     const { launchid } = useParams()
@@ -27,6 +28,7 @@ const LaunchCard = () => {
 
     return (
         <div className="ml-auto mr-auto">
+            <GoBack />
             { launch ? (
                 <div className="flex">
                     <div className="w-screen-1/2">
