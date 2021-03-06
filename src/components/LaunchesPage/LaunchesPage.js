@@ -1,5 +1,4 @@
 import { useEffect, useContext, useState } from 'react'
-import { fetchSingleSchema } from '../../services/loadData'
 import LaunchCard from '../LaunchCard'
 import Loading from '../Loading'
 import LaunchStat from '../LaunchStat'

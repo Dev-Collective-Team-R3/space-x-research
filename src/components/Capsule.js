@@ -55,7 +55,11 @@ const Capsule = () => {
                                 </tr>
                                 <tr>
                                     <td className="text-right w-1/2 pr-4">Launches</td>
-                                    <td className="text-left w-1/2">{ capsule.launches.length > 0 ? capsule.launches.map(launch=><Link to={`/launches/${launch}`}>{launch}</Link>) : "Never used in a launch" }</td>
+                                    <td className="text-left w-1/2">
+                                        { capsule.launches.length > 0 ? 
+                                            capsule.launches.map(launch=><div key={launch}><Link to={`/launches/${launch}`}>{launch}</Link></div>) 
+                                            : "Never used in a launch" }
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
