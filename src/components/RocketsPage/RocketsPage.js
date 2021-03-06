@@ -16,11 +16,10 @@ const RocketsPage = () => {
     const value = useContext(AllDataContext)
     
     useEffect(() => {
-        (async () => {
         setRockets(value.rockets)
         const newdata = value ? value.rockets.map(rocket=>({id: rocket.id, name: rocket.name})) : null
         setRocketSmall(newdata)
-    })()}, [value])
+    }, [value])
 
     return (
         <div className="">

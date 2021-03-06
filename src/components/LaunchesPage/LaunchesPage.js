@@ -1,11 +1,10 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useContext, useState } from 'react'
 import { fetchSingleSchema } from '../../services/loadData'
-import { Link, Switch, Route, useRouteMatch, useParams } from 'react-router-dom'
 import LaunchCard from '../LaunchCard'
 import Loading from '../Loading'
 import LaunchStat from '../LaunchStat'
 import LaunchSearch from '../LaunchSearch'
+import { AllDataContext } from '../../services/AllDataContext'
 import _ from 'lodash'
 
 const LaunchesPage = () => {
@@ -14,28 +13,18 @@ const LaunchesPage = () => {
 
     const [ allLaunches, setAllLaunches ] = useState([])
 
-    
-    useEffect(()=>(async ()=>{
-        const data = await fetchSingleSchema('launches')
-        setLaunches(data)
-        setAllLaunches(data)
-    })(),[])
+    const [ capsules, setCapsules ] = useState([])
     
     const [ rockets, setRockets ] = useState([])
 
-    useEffect(()=>(async ()=>{
-        const data = await fetchSingleSchema('rockets')
-        const mappedData = data.map(rocket => ({id: rocket.id, name: rocket.name}))
-        setRockets(mappedData)
-    })(),[])
-    
-    const [ capsules, setCapsules ] = useState([])
+    const value = useContext(AllDataContext)
 
-    useEffect(()=>(async()=>{
-        const data = await fetchSingleSchema('capsules')
-        const mappedData = data.map(capsule => ({ id: capsule.id, serial: capsule.serial, type: capsule.type }))
-        setCapsules(mappedData)
-    })(), [])
+    useEffect(()=>{
+        setLaunches(value.launches)
+        setAllLaunches(value.launches)
+        setCapsules(value.capsules)
+        setRockets(value.rockets)
+    },[value])
 
     const searchFunction = (e) => {
         const searchResult = allLaunches.filter(launch => (
@@ -51,7 +40,7 @@ const LaunchesPage = () => {
             { launches ? (<LaunchStat launches={launches} />) : null }
             <ul className="w-screen-9/10 flex flex-wrap justify-around mx-auto">
                 {
-                    (launches.length > 0) ?
+                    ( launches && launches.length > 0) ?
                     (_.sortBy(launches, (launch)=> launch.name ).map((launch, index) => (
                         <li key={index} className="w-screen-40 p-5 border mb-5 shadow-md rounded-lg">
                             <LaunchCard launch={launch} rockets={rockets} capsules={capsules} className=""/>
