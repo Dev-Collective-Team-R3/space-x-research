@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { fetchMultipleSchema } from '../services/loadData'
+import { fetchSingleSchema } from '../services/loadData'
 import Loading from './Loading'
 
 const CapsulesPage = () => {
@@ -9,7 +9,7 @@ const CapsulesPage = () => {
     const [ capsules, setCapsules ] = useState([])
     
     useEffect(async() => {
-        setCapsules(await fetchMultipleSchema("capsules"))
+        setCapsules(await fetchSingleSchema("capsules"))
     }, [])
 
     return (

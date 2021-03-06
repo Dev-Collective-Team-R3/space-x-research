@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { fetchMultipleSchema } from '../../services/loadData'
+import { fetchSingleSchema } from '../../services/loadData'
 import { Link, Switch, Route, useRouteMatch, useParams } from 'react-router-dom'
 import LaunchCard from '../LaunchCard'
 import Loading from '../Loading'
@@ -16,7 +16,7 @@ const LaunchesPage = () => {
 
     
     useEffect(()=>(async ()=>{
-        const data = await fetchMultipleSchema('launches')
+        const data = await fetchSingleSchema('launches')
         setLaunches(data)
         setAllLaunches(data)
     })(),[])
@@ -24,7 +24,7 @@ const LaunchesPage = () => {
     const [ rockets, setRockets ] = useState([])
 
     useEffect(()=>(async ()=>{
-        const data = await fetchMultipleSchema('rockets')
+        const data = await fetchSingleSchema('rockets')
         const mappedData = data.map(rocket => ({id: rocket.id, name: rocket.name}))
         setRockets(mappedData)
     })(),[])
@@ -32,7 +32,7 @@ const LaunchesPage = () => {
     const [ capsules, setCapsules ] = useState([])
 
     useEffect(()=>(async()=>{
-        const data = await fetchMultipleSchema('capsules')
+        const data = await fetchSingleSchema('capsules')
         const mappedData = data.map(capsule => ({ id: capsule.id, serial: capsule.serial, type: capsule.type }))
         setCapsules(mappedData)
     })(), [])
