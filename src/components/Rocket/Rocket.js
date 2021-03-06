@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import {fetchSingleItem} from '../../services/loadData'
-import { Link, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
+import ImageSlide from '../ImageSlides'
 
 const Rocket = () => {
     const { rocketid } = useParams()
 
     const [ rocket, setRocket ] = useState("")
-
-    const [ imageCounter, setImageCounter ] = useState(0)
-
-    const handleClick = () =>{
-        imageCounter+1 < rocket.flickr_images.length ? setImageCounter(imageCounter+1) : setImageCounter(0)
-    }
 
     useEffect(async () => {
         const data = await fetchSingleItem('rockets', rocketid)
@@ -83,8 +78,8 @@ const Rocket = () => {
                         </table>
 
                     </div>
-                    <div className="w-screen-1/2 shadow-lg cursor-pointer" onClick={handleClick}>
-                        <img src={rocket.flickr_images[imageCounter]} alt="spacex rockets" className="object-cover h-screen" />
+                    <div className="w-screen-1/2">
+                        <ImageSlide images={rocket.flickr_images} />
                     </div>
                 </div>) : 
                 (<div>"Loading..."</div>)
