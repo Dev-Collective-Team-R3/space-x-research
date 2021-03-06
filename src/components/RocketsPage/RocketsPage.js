@@ -17,7 +17,6 @@ const RocketsPage = () => {
     
     useEffect(() => {
         (async () => {
-        const data = await fetchSingleSchema('rockets')
         setRockets(value.rockets)
         const newdata = value ? value.rockets.map(rocket=>({id: rocket.id, name: rocket.name})) : null
         setRocketSmall(newdata)

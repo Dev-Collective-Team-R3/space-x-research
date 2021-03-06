@@ -26,20 +26,17 @@ const RocketsTable = ({ rockets }) => {
                 <tr>
                     <th className={header_format}></th>
                     {rockets ? rockets.map(rocket=>(
-                        <>
-                            <th className={header_format}><Link to={`/rockets/${rocket.id}`} >{rocket.name}</Link></th>
-                            
-                        </>
+                        <th key={rocket.id} className={header_format}><Link to={`/rockets/${rocket.id}`} >{rocket.name}</Link></th>
                     )) : null}
                 </tr>
             </thead>
             <tbody>
                 {
                     rocketDataItems.map((item, index)=>(
-                        <tr className={index % 2 ? odd_table_row : ""}>
+                        <tr className={index % 2 ? odd_table_row : ""} key={index}>
                             <td>{item.name}</td>
                             {rockets.map(rocket=>
-                                <td className={data_col_format}>
+                                <td className={data_col_format} key={rocket.id}>
                                     <Link to={`/rockets/${rocket.id}`}>
                                         {dataGetter(rocket, item.accessor)}
                                     </Link>
