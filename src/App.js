@@ -27,7 +27,7 @@ function App() {
 
   return (
     <AllDataContext.Provider value={allData}>
-      <div className="mt-32 mx-20">
+      <div className="mt-20 mx-2 laptop:mx-20 laptop:mt-32">
         <Router>
           <Navbar />
           <Switch>
