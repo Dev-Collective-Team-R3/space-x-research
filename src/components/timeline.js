@@ -26,9 +26,9 @@ function getFacts() {
       b.style.backgroundColor = 'black';       
       b.className = 'factButton';
       document.getElementById('timeInfo').appendChild(b); 
+      let date = moment.utc(info[b.id].event_date_utc).format('MMMM D, YYYY'); 
       b.addEventListener('click', () => {
         console.log(info[b.id]);
-        let date = moment.utc(info[b.id].event_date_utc).format('MMMM D, YYYY'); 
         let article = ''; 
         if (JSON.stringify(info[b.id].links.article) !== 'null') {
           article = info[b.id].links.article; 
@@ -38,6 +38,7 @@ function getFacts() {
         else document.getElementById('timeInfo').innerHTML = date + details;
         document.getElementById('timeInfo').style.justifyContent = 'center'; 
       })
+      document.getElementById('timeInfo').appendChild(document.createTextNode(date + ' | '));
       document.getElementById('timeInfo').appendChild(document.createTextNode(res.data[i].title));
     }
   }); 
