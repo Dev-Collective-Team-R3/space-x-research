@@ -18,6 +18,10 @@ const LandingPage = () => {
                 alt="space cover for smaller screen" 
                 className="object-cover mx-auto m-0 h-screen w-screen laptop:hidden" 
             />
+
+            <div className="fixed z-10 border inset-y-1/2 w-screen h-screen-1/10 flex justify-center items-center bg-pink-100 opacity-60">
+                <div className="text-3xl text-white text-pink-500 laptop:text-5xl">spaceXresearch</div>
+            </div>
         </div>
     )
 }

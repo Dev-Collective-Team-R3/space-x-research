@@ -1,26 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import {fetchSingleItem} from '../../services/loadData'
-import { Link, useHistory } from "react-router-dom"
+import ImageSlide from '../ImageSlides'
+import GoBack from '../GoBack'
 
 const Rocket = () => {
     const { rocketid } = useParams()
 
     const [ rocket, setRocket ] = useState("")
 
-    const [ imageCounter, setImageCounter ] = useState(0)
-
-    const handleClick = () =>{
-        imageCounter+1 < rocket.flickr_images.length ? setImageCounter(imageCounter+1) : setImageCounter(0)
-    }
-
     useEffect(async () => {
         const data = await fetchSingleItem('rockets', rocketid)
         setRocket(data)
     }, [])
-
-    // accessing history object from react-router-dom
-    const history = useHistory()
 
     const table_left_col = "text-right pr-4 pl-6"
     const table_right_col = "pl-4 pr-6"
@@ -29,7 +21,7 @@ const Rocket = () => {
 
     return (
         <div>
-            <div onClick={()=> history.goBack()} className="rounded-full cursor-pointer px-3 py-1 text-center fixed right-20 top-3 bg-pink-400 text-white">Go Back</div>
+            <GoBack />
             { 
                 rocket ?
                 (<div className="flex mb-20">
@@ -83,8 +75,8 @@ const Rocket = () => {
                         </table>
 
                     </div>
-                    <div className="w-screen-1/2 shadow-lg cursor-pointer" onClick={handleClick}>
-                        <img src={rocket.flickr_images[imageCounter]} alt="spacex rockets" className="object-cover h-screen" />
+                    <div className="w-screen-1/2">
+                        <ImageSlide images={rocket.flickr_images} />
                     </div>
                 </div>) : 
                 (<div>"Loading..."</div>)

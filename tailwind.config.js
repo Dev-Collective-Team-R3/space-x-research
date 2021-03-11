@@ -2,6 +2,11 @@ module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    extend: {
+      backgroundImage: theme =>({
+        'dragon-image': "url('/src/assets/dragon_alt.png')",
+      })
+    },
     screens: {
       'mobile': '350px',
       'tablet': '600px',
@@ -13,6 +18,7 @@ module.exports = {
       'screen-1/2': '50vh',
       'screen-1/4': '25vh',
       'screen-3/4': '75vh',
+      'screen-1/10': '10vh',
     },
     maxHeight: {
       'screen': '100vh',

@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
-import { fetchMultipleSchema } from '../../services/loadData'
+import { fetchSingleSchema } from '../../services/loadData'
+import { AllDataContext } from '../../services/AllDataContext'
 import RocketsTable from '../RocketsTable'
 import Loading from '../Loading'
 
@@ -11,25 +12,19 @@ const RocketsPage = () => {
 
     //state to hold only rocket names and ids
     const [ rocketSmall, setRocketSmall ] = useState([])
-    
-    useEffect(async () => {
-        const data = await fetchMultipleSchema('rockets')
-        setRockets(data)
-        const newdata = data.map(rocket=>({id: rocket.id, name: rocket.name}))
-        setRocketSmall(newdata)
-    }, [])
 
-    const tableColumns = useMemo(
-        ()=>{
-            const headers = [].push({HEADER: '', accessor: ''})
-            rockets.map(rocket=>({HEADER: rocket.name, accessor: ""}))
-        },[]
-    )
+    const value = useContext(AllDataContext)
+    
+    useEffect(() => {
+        setRockets(value.rockets)
+        const newdata = value ? value.rockets.map(rocket=>({id: rocket.id, name: rocket.name})) : null
+        setRocketSmall(newdata)
+    }, [value])
 
     return (
         <div className="">
             {
-                rockets.length > 0 ? (<RocketsTable rockets={rockets} />):(<Loading />)
+                rockets && rockets.length > 0 ? (<RocketsTable rockets={rockets} />):(<Loading />)
             }
         </div>
     )

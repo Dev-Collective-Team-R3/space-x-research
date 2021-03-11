@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-
-import { fetchMultipleSchema } from '../services/loadData'
+import { AllDataContext } from '../services/AllDataContext'
+import { fetchSingleSchema } from '../services/loadData'
 import Loading from './Loading'
 
 const CapsulesPage = () => {
 
     const [ capsules, setCapsules ] = useState([])
+
+    const value = useContext(AllDataContext)
     
     useEffect(async() => {
-        setCapsules(await fetchMultipleSchema("capsules"))
-    }, [])
+        setCapsules(value.capsules)
+    }, [value])
 
     return (
         <div className="mt-40 ml-40">
             {
-                capsules.length > 0 ? 
+                capsules && capsules.length > 0 ? 
                     (
                         capsules.map(capsule=>(
                             <Link to={`/capsules/${capsule.id}`} className="border w-1/2 mb-4" key={capsule.id}>
