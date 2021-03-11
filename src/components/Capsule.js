@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom';
 
-import Dragon from '../assets/dragon.png'
+import Dragon from '../assets/dragon_alt.png'
 import { fetchSingleItem } from '../services/loadData'
 import Loading from './Loading'
 import GoBack from './GoBack'
@@ -18,16 +18,16 @@ const Capsule = () => {
     },[])
     
     return (
-        <div className="ml-auto mt-40 mr-auto w-1/2">
+        <div className="ml-auto mt-40 mr-auto">
             <GoBack />
             {
                 capsule ? 
                 (
-                    <div className="flex flex-col items-center">
-                        <div className="border w-40 rounded-full p-5">
+                    <div className="flex justify-center items-center row-reverse">
+                        <div className="w-1/2 h-24 rounded-full p-5">
                             <img src={Dragon} alt="dragon logo" className="object-cover" />
                         </div>
-                        <table className="">
+                        <table className="w-1/2">
                             <tbody>
                                 <tr>
                                     <td className="text-right w-1/2 pr-4">Type</td>
