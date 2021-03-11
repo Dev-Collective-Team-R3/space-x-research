@@ -1,6 +1,9 @@
 import React from 'react'; 
 // import axios from 'axios';
+import moment from 'moment';
+
 const axios = require('axios');
+
 
 let info = {}; 
 
@@ -25,16 +28,13 @@ function getFacts() {
       document.getElementById('timeInfo').appendChild(b); 
       b.addEventListener('click', () => {
         console.log(info[b.id]);
-        let date = JSON.stringify(info[b.id].event_date_utc);
-        date = date.slice(1,date.length - 1); 
+        let date = moment.utc(info[b.id].event_date_utc).format('MMMM D, YYYY'); 
         let article = ''; 
         if (JSON.stringify(info[b.id].links.article) !== 'null') {
-          article = JSON.stringify(info[b.id].links.article);
-          article = article.slice(1,article.length-1); 
-        }
-        let details = JSON.stringify(info[b.id].details); 
-        details = details.slice(1,details.length-1);
-        if (article) document.getElementById('timeInfo').innerHTML = date + '<a href=' + article + '>' + article + '</a>' + details;
+          article = info[b.id].links.article; 
+        } 
+        let details = info[b.id].details; 
+        if (article) document.getElementById('timeInfo').innerHTML = date + '<a target="_blank" href=' + article + '>' + article + '</a>' + details;
         else document.getElementById('timeInfo').innerHTML = date + details;
         document.getElementById('timeInfo').style.justifyContent = 'center'; 
       })
@@ -49,13 +49,14 @@ function consoleInfo() {
 
 const Timeline = () => {
   return (
-    <div style={{backgroundColor: 'green', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', paddingTop: '20vh'}}>
+    <div style={{
+      display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', paddingTop: '20vh'}}>
       <h1>Space X Historical Timeline</h1> 
-      <button style={{border: 'solid black 2px'}} onClick={getFacts}>Fetch Historical Data</button>
-      <button style={{ border: 'solid black 2px' }} onClick={consoleInfo}>See Info in Console</button>
+      <button style={{border: 'solid black 2px'}} onClick={getFacts}>Click here to display the timeline</button>
+      {/* <button style={{ border: 'solid black 2px' }} onClick={consoleInfo}>See Info in Console</button> */}
 
-    <div id='timeline' style={{height: '100vh', width: '100vw', backgroundColor: 'green', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', paddingTop: '15vh'}}> 
-      <div style={{ height: '100vh', width: '100vw', backgroundColor: 'green', objectFit: 'cover', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center'}} id='timeInfo'> </div>
+    <div id='timeline' style={{height: '100vh', width: '100vw', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', paddingTop: '15vh'}}> 
+      <div style={{ height: '100vh', width: '100vw', objectFit: 'cover', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center'}} id='timeInfo'> </div>
     </div>
     </div>
   )
